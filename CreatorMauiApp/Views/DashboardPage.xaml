@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:CreatorMauiApp.ViewModels"
+             x:Class="CreatorMauiApp.Views.DashboardPage"
+             x:DataType="vm:DashboardViewModel"
+             Title="Início">
+    <ScrollView>
+        <VerticalStackLayout Spacing="18">
+            <Label Text="Studio do Criador"
+                   Style="{StaticResource TitleLabelStyle}" />
+            <Label Text="Gerencie uploads, playlists e acompanhe métricas da sua audiência."
+                   Style="{StaticResource BodyLabelStyle}" />
+
+            <Frame Style="{StaticResource CardFrameStyle}">
+                <VerticalStackLayout>
+                    <Label Text="Ações rápidas" Style="{StaticResource BodyLabelStyle}" />
+                    <Button Text="Upload de Conteúdo" Command="{Binding NavigateToUploadCommand}" />
+                    <Button Text="Gerenciar Playlists" Command="{Binding NavigateToPlaylistsCommand}" />
+                    <Button Text="Ver Métricas" Command="{Binding NavigateToMetricsCommand}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame Style="{StaticResource CardFrameStyle}">
+                <VerticalStackLayout>
+                    <Label Text="Status geral" Style="{StaticResource BodyLabelStyle}" />
+                    <Grid ColumnDefinitions="*,Auto" RowDefinitions="Auto,Auto,Auto" ColumnSpacing="12" RowSpacing="8">
+                        <Label Grid.Row="0" Grid.Column="0" Text="Uploads ativos" TextColor="{StaticResource TextSecondaryColor}" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="12" TextColor="{StaticResource TextPrimaryColor}" FontAttributes="Bold" />
+                        <Label Grid.Row="1" Grid.Column="0" Text="Playlists curadas" TextColor="{StaticResource TextSecondaryColor}" />
+                        <Label Grid.Row="1" Grid.Column="1" Text="6" TextColor="{StaticResource TextPrimaryColor}" FontAttributes="Bold" />
+                        <Label Grid.Row="2" Grid.Column="0" Text="Lives programadas" TextColor="{StaticResource TextSecondaryColor}" />
+                        <Label Grid.Row="2" Grid.Column="1" Text="3" TextColor="{StaticResource TextPrimaryColor}" FontAttributes="Bold" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
