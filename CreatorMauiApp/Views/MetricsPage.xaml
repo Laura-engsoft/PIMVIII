@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:CreatorMauiApp.ViewModels"
+             xmlns:models="clr-namespace:CreatorMauiApp.Models"
+             x:Class="CreatorMauiApp.Views.MetricsPage"
+             x:DataType="vm:MetricsViewModel"
+             Title="Métricas">
+    <ScrollView>
+        <VerticalStackLayout Spacing="14">
+            <Label Text="Painel de Métricas"
+                   Style="{StaticResource TitleLabelStyle}" />
+            <Label Text="Entenda o impacto do seu conteúdo com dados simulados."
+                   Style="{StaticResource BodyLabelStyle}" />
+
+            <Grid ColumnDefinitions="*,*,*" ColumnSpacing="12">
+                <Frame Style="{StaticResource CardFrameStyle}">
+                    <VerticalStackLayout>
+                        <Label Text="Views totais" Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="{Binding TotalViews, StringFormat='{0:N0}'}" FontSize="26" FontAttributes="Bold" TextColor="{StaticResource PrimaryColor}" />
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame Style="{StaticResource CardFrameStyle}">
+                    <VerticalStackLayout>
+                        <Label Text="Likes" Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="{Binding TotalLikes, StringFormat='{0:N0}'}" FontSize="26" FontAttributes="Bold" TextColor="{StaticResource SecondaryColor}" />
+                    </VerticalStackLayout>
+                </Frame>
+                <Frame Style="{StaticResource CardFrameStyle}">
+                    <VerticalStackLayout>
+                        <Label Text="Uploads" Style="{StaticResource BodyLabelStyle}" />
+                        <Label Text="{Binding TotalUploads}" FontSize="26" FontAttributes="Bold" TextColor="{StaticResource WarningColor}" />
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+
+            <Frame Style="{StaticResource CardFrameStyle}">
+                <VerticalStackLayout Spacing="12">
+                    <Label Text="Distribuição de fontes de audiência"
+                           Style="{StaticResource BodyLabelStyle}" />
+                    <CollectionView ItemsSource="{Binding ChartData}"
+                                    ItemsLayout="HorizontalList"
+                                    HorizontalScrollBarVisibility="Never">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate x:DataType="models:MetricSlice">
+                                <VerticalStackLayout HorizontalOptions="Center" Spacing="6" Margin="8,0">
+                                    <BoxView WidthRequest="64"
+                                             HeightRequest="{Binding DisplayHeight}"
+                                             VerticalOptions="End"
+                                             Color="{Binding Color}"
+                                             CornerRadius="12" />
+                                    <Label Text="{Binding Label}"
+                                           FontAttributes="Bold"
+                                           FontSize="14"
+                                           HorizontalTextAlignment="Center"
+                                           TextColor="{StaticResource TextPrimaryColor}" />
+                                    <Label Text="{Binding Percentage, StringFormat='{0:P0}'}"
+                                           HorizontalTextAlignment="Center"
+                                           TextColor="{StaticResource TextSecondaryColor}" />
+                                </VerticalStackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </Frame>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
